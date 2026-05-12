@@ -27,3 +27,6 @@ coverage
 *.pem
 
 *.tsbuildinfo
+
+.vercel
+.netlify

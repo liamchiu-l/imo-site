@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <header className="navbar">
       <Link to="/" className="logo">
-        IMO
+        <img src="/images/imo-logo.png" alt="IMO logo" />
       </Link>
 
       <nav>
@@ -25,33 +25,34 @@ function Home() {
   return (
     <main>
       <section className="hero">
-        <p className="eyebrow">Independent Music Organisation</p>
+        <div>
+          <p className="eyebrow">CMU's</p>
 
-        <h1>Independent Music Organisation</h1>
+          <h1 className="hero-title">
+            <span>Independent Music</span>
+            <span>Organisation</span>
+          </h1>
 
-        <p>
-          A student music community for artists, bands, producers, and people
-          who care about independent music.
-        </p>
+          <p>Johnny tell me what to put here please.</p>
 
-        <div className="hero-buttons">
-          <Link to="/events" className="button primary-button">
-            View Events
-          </Link>
+          <div className="hero-buttons">
+            <Link to="/events" className="button primary-button">
+              View Events
+            </Link>
 
-          <a href="#contact" className="button secondary-button">
-            Get Involved
-          </a>
+            <a href="#contact" className="button secondary-button">
+              Join the Lineup!
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className="preview-section">
-        <div className="preview-card">
-          <p className="eyebrow">What We Do</p>
+      <section className="info-section">
+        <div className="info-content">
           <h2>Whatever it is we do</h2>
           <p>
-            IMO is built around giving musicians a space to perform, meet other
-            artists, share work, and create music together.
+            IMO does music stuff at CMU or smth, but I don't really know
+            cause I'm not a part of it.
           </p>
         </div>
       </section>
