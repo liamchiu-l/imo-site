@@ -62,26 +62,32 @@ function Home() {
 
 function EventCard({ event }) {
   return (
-    <article className="event-card">
-      <p className="event-date">
-        {event.date} {event.time ? `· ${event.time}` : ""}
-      </p>
+    <article className="event-row">
+      <div className="event-row-date">
+        <span>{event.date}</span>
+        {event.time && <span>{event.time}</span>}
+      </div>
 
-      <h3>{event.title}</h3>
+      <div className="event-row-main">
+        <h3>{event.title}</h3>
+        {event.description && <p>{event.description}</p>}
+      </div>
 
-      {event.location && <p className="event-location">{event.location}</p>}
+      {event.location && (
+        <p className="event-row-location">{event.location}</p>
+      )}
 
-      {event.description && <p>{event.description}</p>}
-
-      {event.link && (
+      {event.link ? (
         <a
-          className="event-link"
+          className="event-row-button"
           href={event.link}
           target="_blank"
           rel="noreferrer"
         >
-          More Info
+          Tickets or more info or something
         </a>
+      ) : (
+        <span className="event-row-placeholder">TBA</span>
       )}
     </article>
   );

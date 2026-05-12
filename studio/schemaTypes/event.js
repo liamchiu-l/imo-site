@@ -35,14 +35,6 @@ export const eventType = defineType({
       rows: 4,
     }),
     defineField({
-      name: "poster",
-      title: "Poster Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
       name: "link",
       title: "External Link",
       type: "url",
