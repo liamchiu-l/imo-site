@@ -2,7 +2,7 @@ import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaInstagram, FaDiscord, FaYoutube } from "react-icons/fa";
 import { client } from "./sanityClient";
-import "./App.css";
+import "./App.css"; 
 
 function ScrollToHash() {
   const location = useLocation();
