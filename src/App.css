@@ -331,6 +331,105 @@ nav a.active {
   font-size: 1.1rem;
 }
 
+/* Contact / Footer */
+
+.contact-section {
+  width: 100%;
+  background: #0D031B;
+  color: #FAFBFD;
+  padding: 40px 56px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-content {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-content h2 {
+  margin: 0 0 48px;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 0.9;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+.contact-grid {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-label {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.contact-grid p {
+  margin: 0 0 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.contact-grid a {
+  color: #32C7E8;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.contact-grid a:hover {
+  text-decoration: underline;
+}
+
+.site-footer {
+  background: #121212;
+  color: white;
+  padding: 35px 56px;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tartan-connect-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+.footer-links a:hover {
+  color: rgb(50, 199, 232);
+}
+
+.site-footer p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 /* Mobile */
 
 @media (max-width: 850px) {
@@ -378,5 +477,16 @@ nav a.active {
   .event-row-button,
   .event-row-placeholder {
     width: 100%;
+  }
+
+  .contact-section,
+  .site-footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
   }
 }

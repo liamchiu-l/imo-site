@@ -1,7 +1,28 @@
-import { Link, NavLink, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FaInstagram, FaDiscord, FaYoutube } from "react-icons/fa";
 import { client } from "./sanityClient";
 import "./App.css";
+
+function ScrollToHash() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const target = document.querySelector(location.hash);
+
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location]);
+
+  return null;
+}
 
 function Navbar() {
   return (
@@ -15,7 +36,7 @@ function Navbar() {
         <NavLink to="/events">Events</NavLink>
         <a href="#photos">Photos</a>
         <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
+        <a href="/#contact">Contact</a>
       </nav>
     </header>
   );
@@ -30,7 +51,7 @@ function Home() {
 
           <h1 className="hero-title">
             <span>Independent Music</span>
-            <span>Organisation</span>
+            <span>Organization</span>
           </h1>
 
           <p>Johnny tell me what to put here please.</p>
@@ -56,6 +77,47 @@ function Home() {
           </p>
         </div>
       </section>
+
+      <section id="contact" className="contact-section">
+        <div className="contact-content">
+          <h2>Contact</h2>
+
+          <div className="contact-grid">
+            <div>
+             <p className="contact-label">General</p>
+             <a href="mailto:independentmusiciansorg@gmail.com">independentmusiciansorg@gmail.com</a>
+            </div>
+         </div>
+       </div>
+      </section>
+
+      <footer className="site-footer">
+        <div className="footer-links">
+          <a href="https://www.instagram.com/cmuimo" target="_blank" rel="noreferrer">
+            <FaInstagram />
+          </a>
+          <a href="https://discord.gg/XWX2M4jB" target="_blank" rel="noreferrer">
+            <FaDiscord />
+         </a>
+         <a href="https://www.youtube.com/@CMUIMO" target="_blank" rel="noreferrer">
+           <FaYoutube />
+          </a>
+          <a
+            href="https://tartanconnect.cmu.edu/imo/home/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Tartan Connect"
+          >
+            <img
+              className="tartan-connect-img"
+              src="/images/TartanConnect.png"
+              alt=""
+            />
+          </a>
+        </div>
+
+         <p>Independent Music Organization</p>
+      </footer>
     </main>
   );
 }
@@ -142,7 +204,8 @@ function App() {
   return (
     <div className="site">
       <div className="background-glow"></div>
-
+      
+      <ScrollToHash />
       <Navbar />
 
       <Routes>
