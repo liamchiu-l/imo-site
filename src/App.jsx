@@ -34,8 +34,16 @@ function Navbar() {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/events">Events</NavLink>
+        <a
+          href="https://calendar.google.com/calendar/u/1?cid=YW5kcmV3LmNtdS5lZHVfYzVubTZuYTlicGVzdjFxOWhnYXAwOGpncGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
+          target="_blank"
+          rel="noreferrer"
+        >
+        Calendar
+        </a>
         <a href="#photos">Photos</a>
         <a href="#blog">Blog</a>
+        <NavLink to="/board">Board</NavLink>
         <a href="/#contact">Contact</a>
       </nav>
     </header>
@@ -46,7 +54,7 @@ function Home() {
   return (
     <main>
       <section className="hero">
-        <div>
+        <div className="hero-content">
           <p className="eyebrow">CMU's</p>
 
           <h1 className="hero-title">
@@ -61,7 +69,12 @@ function Home() {
               View Events
             </Link>
 
-            <a href="#contact" className="button secondary-button">
+            <a
+              href="https://tartanconnect.cmu.edu/imo/club_signup"
+              className="button secondary-button"
+              target="_blank"
+              rel="noreferrer"
+            >
               Join the Lineup!
             </a>
           </div>
@@ -72,8 +85,7 @@ function Home() {
         <div className="info-content">
           <h2>Whatever it is we do</h2>
           <p>
-            IMO does music stuff at CMU or smth, but I don't really know
-            cause I'm not a part of it.
+            IMO does music stuff at CMU. Monke like music.
           </p>
         </div>
       </section>
@@ -146,7 +158,7 @@ function EventCard({ event }) {
           target="_blank"
           rel="noreferrer"
         >
-          Tickets or more info or something
+          Tickets || More Info
         </a>
       ) : (
         <span className="event-row-placeholder">TBA</span>
@@ -200,10 +212,64 @@ function Events() {
   );
 }
 
+function Board() {
+  const [execMembers, setExecMembers] = useState([]);
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "execMember"] | order(order asc) {
+          name,
+          role,
+          "photoUrl": photo.asset->url
+        }`
+      )
+      .then((data) => setExecMembers(data))
+      .catch(console.error);
+  }, []);
+
+  return (
+    <main>
+      <section className="page-hero exec-hero">
+        <p className="eyebrow">IMO</p>
+        <h1>Board</h1>
+        <p>Who is running the show or something</p>
+      </section>
+
+      <section className="exec-section">
+        {execMembers.length === 0 ? (
+          <p className="empty-message">No exec members added yet.</p>
+        ) : (
+          <div className="exec-grid">
+            {execMembers.map((member) => (
+              <article className="exec-card" key={member.name + member.role}>
+                <div className="exec-photo-wrap">
+                  {member.photoUrl ? (
+                    <img
+                      className="exec-photo"
+                      src={member.photoUrl}
+                      alt={member.name}
+                    />
+                  ) : (
+                    <div className="exec-photo-placeholder"></div>
+                  )}
+                </div>
+
+                <h2>{member.name}</h2>
+                <p className="exec-role">{member.role}</p>
+                
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
+
 function App() {
   return (
     <div className="site">
-      <div className="background-glow"></div>
       
       <ScrollToHash />
       <Navbar />
@@ -211,6 +277,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/board" element={<Board />} />
       </Routes>
     </div>
   );
