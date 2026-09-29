@@ -22,9 +22,8 @@ function Board() {
   return (
     <main>
       <section className="page-hero exec-hero">
-        <p className="eyebrow">IMO</p>
         <h1>Board</h1>
-        <p>Who is running the show or something</p>
+        <p>Names and faces of the people keeping IMO running</p>
       </section>
 
       <section className="exec-section">
