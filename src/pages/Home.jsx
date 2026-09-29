@@ -104,8 +104,11 @@ function Home() {
 
       <section className="info-section">
         <div className="info-content">
-          <h2>Whatever it is we do</h2>
-          <p>IMO does music stuff at CMU. Monke like music.</p>
+          <h2>What is IMO?</h2>
+          <p>IMO is the biggest music organization in Carnegie Mellon University, 
+            bringing live music and related events to the student body as well as
+            the surrounding city of Pittsburgh.
+          </p>
         </div>
       </section>
 

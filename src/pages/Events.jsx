@@ -141,8 +141,7 @@ function Events() {
           <p className="hero-kicker">Upcoming Shows</p>
           <h1 className="events-title">Events</h1>
           <p className="events-subtitle">
-            Shows, jam sessions, club meetings,
-            listening parties, and other IMO events.
+            Upcoming IMO events such as shows and jam sessions.
           </p>
         </div>
       </section>
