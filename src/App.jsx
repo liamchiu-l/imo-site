@@ -1,8 +1,17 @@
-import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { FaInstagram, FaDiscord, FaYoutube } from "react-icons/fa";
-import { client } from "./sanityClient";
-import "./App.css"; 
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Events from "./pages/Events";
+import Board from "./pages/Board";
+
+import "./App.css";
+
+
+/* =========================================================
+   Scroll handling
+   ========================================================= */
 
 function ScrollToHash() {
   const location = useLocation();
@@ -10,7 +19,6 @@ function ScrollToHash() {
   useEffect(() => {
     if (location.hash) {
       const target = document.querySelector(location.hash);
-
       if (target) {
         setTimeout(() => {
           target.scrollIntoView({ behavior: "smooth" });
@@ -24,253 +32,14 @@ function ScrollToHash() {
   return null;
 }
 
-function Navbar() {
-  return (
-    <header className="navbar">
-      <Link to="/" className="logo">
-        <img src="/images/imo-logo.png" alt="IMO logo" />
-      </Link>
 
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/events">Events</NavLink>
-        <a
-          href="https://calendar.google.com/calendar/u/1?cid=YW5kcmV3LmNtdS5lZHVfYzVubTZuYTlicGVzdjFxOWhnYXAwOGpncGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ"
-          target="_blank"
-          rel="noreferrer"
-        >
-        Calendar
-        </a>
-        <a href="#photos">Photos</a>
-        <a href="#blog">Blog</a>
-        <NavLink to="/board">Board</NavLink>
-        <a href="/#contact">Contact</a>
-      </nav>
-    </header>
-  );
-}
-
-function Home() {
-  return (
-    <main>
-      <section className="hero">
-        <div className="hero-content">
-          <p className="eyebrow">CMU's</p>
-
-          <h1 className="hero-title">
-            <span>Independent Music</span>
-            <span>Organization</span>
-          </h1>
-
-          <p>Johnny tell me what to put here please.</p>
-
-          <div className="hero-buttons">
-            <Link to="/events" className="button primary-button">
-              View Events
-            </Link>
-
-            <a
-              href="https://tartanconnect.cmu.edu/imo/club_signup"
-              className="button secondary-button"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Join the Lineup!
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="info-section">
-        <div className="info-content">
-          <h2>Whatever it is we do</h2>
-          <p>
-            IMO does music stuff at CMU. Monke like music.
-          </p>
-        </div>
-      </section>
-
-      <section id="contact" className="contact-section">
-        <div className="contact-content">
-          <h2>Contact</h2>
-
-          <div className="contact-grid">
-            <div>
-             <p className="contact-label">General</p>
-             <a href="mailto:independentmusiciansorg@gmail.com">independentmusiciansorg@gmail.com</a>
-            </div>
-         </div>
-       </div>
-      </section>
-
-      <footer className="site-footer">
-        <div className="footer-links">
-          <a href="https://www.instagram.com/cmuimo" target="_blank" rel="noreferrer">
-            <FaInstagram />
-          </a>
-          <a href="https://discord.gg/XWX2M4jB" target="_blank" rel="noreferrer">
-            <FaDiscord />
-         </a>
-         <a href="https://www.youtube.com/@CMUIMO" target="_blank" rel="noreferrer">
-           <FaYoutube />
-          </a>
-          <a
-            href="https://tartanconnect.cmu.edu/imo/home/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Tartan Connect"
-          >
-            <img
-              className="tartan-connect-img"
-              src="/images/TartanConnect.png"
-              alt=""
-            />
-          </a>
-        </div>
-
-         <p>Independent Music Organization</p>
-      </footer>
-    </main>
-  );
-}
-
-function EventCard({ event }) {
-  return (
-    <article className="event-row">
-      <div className="event-row-date">
-        <span>{event.date}</span>
-        {event.time && <span>{event.time}</span>}
-      </div>
-
-      <div className="event-row-main">
-        <h3>{event.title}</h3>
-        {event.description && <p>{event.description}</p>}
-      </div>
-
-      {event.location && (
-        <p className="event-row-location">{event.location}</p>
-      )}
-
-      {event.link ? (
-        <a
-          className="event-row-button"
-          href={event.link}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Tickets || More Info
-        </a>
-      ) : (
-        <span className="event-row-placeholder">TBA</span>
-      )}
-    </article>
-  );
-}
-
-function Events() {
-  const [events, setEvents] = useState([]);
-
-  useEffect(() => {
-    client
-      .fetch(
-        `*[_type == "event"] | order(date asc) {
-          title,
-          date,
-          time,
-          location,
-          description,
-          link
-        }`
-      )
-      .then((data) => setEvents(data))
-      .catch(console.error);
-  }, []);
-
-  return (
-    <main>
-      <section className="page-hero">
-        <p className="eyebrow">Upcoming Shows</p>
-        <h1>Events</h1>
-        <p>
-          Shows, jam sessions, club meetings, listening parties, and other IMO
-          events.
-        </p>
-      </section>
-
-      <section className="section">
-        {events.length === 0 ? (
-          <p className="empty-message">No upcoming events yet.</p>
-        ) : (
-          <div className="event-grid">
-            {events.map((event) => (
-              <EventCard key={event.title + event.date} event={event} />
-            ))}
-          </div>
-        )}
-      </section>
-    </main>
-  );
-}
-
-function Board() {
-  const [execMembers, setExecMembers] = useState([]);
-
-  useEffect(() => {
-    client
-      .fetch(
-        `*[_type == "execMember"] | order(order asc) {
-          name,
-          role,
-          "photoUrl": photo.asset->url
-        }`
-      )
-      .then((data) => setExecMembers(data))
-      .catch(console.error);
-  }, []);
-
-  return (
-    <main>
-      <section className="page-hero exec-hero">
-        <p className="eyebrow">IMO</p>
-        <h1>Board</h1>
-        <p>Who is running the show or something</p>
-      </section>
-
-      <section className="exec-section">
-        {execMembers.length === 0 ? (
-          <p className="empty-message">No exec members added yet.</p>
-        ) : (
-          <div className="exec-grid">
-            {execMembers.map((member) => (
-              <article className="exec-card" key={member.name + member.role}>
-                <div className="exec-photo-wrap">
-                  {member.photoUrl ? (
-                    <img
-                      className="exec-photo"
-                      src={member.photoUrl}
-                      alt={member.name}
-                    />
-                  ) : (
-                    <div className="exec-photo-placeholder"></div>
-                  )}
-                </div>
-
-                <h2>{member.name}</h2>
-                <p className="exec-role">{member.role}</p>
-                
-              </article>
-            ))}
-          </div>
-        )}
-      </section>
-    </main>
-  );
-}
+/* =========================================================
+   App
+   ========================================================= */
 
 function App() {
   return (
     <div className="site">
-      
       <ScrollToHash />
       <Navbar />
 
