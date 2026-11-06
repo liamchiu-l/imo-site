@@ -36,7 +36,7 @@ function Home() {
 
           <h1 className="hero-title">
             <span>Independent</span>
-            <span>Music</span>
+            <span>Musicians</span>
             <span>Organization</span>
           </h1>
 
