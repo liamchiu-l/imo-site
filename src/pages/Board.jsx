@@ -21,36 +21,50 @@ function Board() {
 
   return (
     <main>
-      <section className="page-hero exec-hero">
-        <h1>Board</h1>
-        <p>Names and faces of the people keeping IMO running</p>
+      {/* Reuses the Events hero so both pages share one look */}
+      <section className="events-page-hero">
+        <div className="events-hero-content">
+          <p className="hero-kicker">Meet the Team</p>
+          <h1 className="events-title">Board</h1>
+          <p className="events-subtitle">
+            Names and faces of the people keeping IMO running.
+          </p>
+        </div>
       </section>
 
-      <section className="exec-section">
-        {execMembers.length === 0 ? (
-          <p className="empty-message">No exec members added yet.</p>
-        ) : (
-          <div className="exec-grid">
-            {execMembers.map((member) => (
-              <article className="exec-card" key={`${member.name}-${member.role}`}>
-                <div className="exec-photo-wrap">
-                  {member.photoUrl ? (
-                    <img
-                      className="exec-photo"
-                      src={member.photoUrl}
-                      alt={member.name}
-                    />
-                  ) : (
-                    <div className="exec-photo-placeholder" />
-                  )}
-                </div>
+      <section className="events-section events-section-torn">
+        <div className="section">
+          {execMembers.length === 0 ? (
+            <p className="empty-message">No exec members added yet.</p>
+          ) : (
+            <div className="exec-grid">
+              {execMembers.map((member) => (
+                <article
+                  className="exec-card"
+                  key={`${member.name}-${member.role}`}
+                >
+                  <div className="exec-photo-wrap">
+                    {member.photoUrl ? (
+                      <img
+                        className="exec-photo"
+                        src={member.photoUrl}
+                        alt={member.name}
+                      />
+                    ) : (
+                      <div className="exec-photo-placeholder" />
+                    )}
+                  </div>
 
-                <h2>{member.name}</h2>
-                <p className="exec-role">{member.role}</p>
-              </article>
-            ))}
-          </div>
-        )}
+                  <h2>{member.name}</h2>
+                  <p className="exec-role">{member.role}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Part of the page flow: sits at the bottom and scrolls with it */}
+        <img src="/images/torn-page-2.png" alt="" className="page-torn-bottom" />
       </section>
     </main>
   );

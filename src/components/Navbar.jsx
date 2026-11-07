@@ -2,7 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 
 // Pages with a full-bleed photo hero get the transparent, floating nav.
 // Everything else gets the solid bar.
-const TRANSPARENT_NAV_ROUTES = ["/", "/events"];
+const TRANSPARENT_NAV_ROUTES = ["/", "/events", "/board"];
 
 function Navbar() {
   const location = useLocation();
