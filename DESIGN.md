@@ -1,10 +1,11 @@
 # IMO Website Design Guidelines
 
-//will be updated more in the future;
+<!-- Will be updated in the future. -->
 
 ## 1. Color Palette
 
-|---|---|
+| Color            | Value                           |
+| ---------------- | ------------------------------- |
 | Primary IMO Blue | `rgb(50, 199, 232)` / `#32C7E8` |
 
 ### Primary Font
