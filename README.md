@@ -48,7 +48,7 @@ Install the following:
 1. Clone the repository:
 
    ```bash
-   git clone <imo-site>
+   git clone <github-url>
    ```
 
 2. Install dependencies:
@@ -57,15 +57,13 @@ Install the following:
    npm install
    ```
 
-3. Configure the required environment variables for Sanity, if applicable.
-
-4. Start the development server:
+3. Start the development server:
 
    ```bash
    npm run dev
    ```
 
-5. Open the local URL displayed in the terminal
+4. Open the local URL displayed in the terminal
 
 ## Contributing
 
@@ -76,6 +74,8 @@ Install the following:
 5. Push your branch to GitHub.
 6. Open a pull request targeting `main`.
 7. Request a review before merging.
+
+Make sure to check DESIGN.md for specific color values and design consistencies.
 
 ## Deployment
 
